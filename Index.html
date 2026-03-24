@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desi Wanderer — India Through a Lens</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f3;
+    --rust: #c4500a;
+    --terracotta: #e07340;
+    --gold: #d4a843;
+    --deep-brown: #2c1a0e;
+    --mid-brown: #5c3a1e;
+    --sage: #6b7c5c;
+    --dusty-rose: #c9856a;
+    --ink: #1a1208;
+    --light-sand: #ede6d5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,80,10,0.15);
+  }
+  .nav-logo {
+    font-family: 'Abril Fatface', serif;
+    font-size: 1.6rem;
+    color: var(--rust);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid-brown); text-decoration: none; font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--rust); }
+  .nav-cta {
+    background: var(--rust); color: white !important;
+    padding: 9px 22px; border-radius: 2px;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--deep-brown) !important; color: white !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh; position: relative;
+    display: flex; align-items: flex-end;
+    padding-bottom: 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(26,18,8,0.1) 0%, rgba(26,18,8,0.65) 100%),
+      url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1800&q=80') center/cover no-repeat;
+  }
+  .hero-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .hero-content { position: relative; z-index: 2; padding-left: 80px; max-width: 720px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px; font-weight: 500;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    line-height: 1.0;
+    color: white;
+    font-weight: 900;
+    margin-bottom: 24px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(255,255,255,0.8);
+    max-width: 500px; line-height: 1.7; margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rust); color: white;
+    padding: 14px 32px; text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--deep-brown); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: white;
+    padding: 14px 32px; text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; border: 1.5px solid rgba(255,255,255,0.5); cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* ─── MARQUEE ─── */
+  .marquee-wrap {
+    background: var(--rust); padding: 14px 0;
+    overflow: hidden; white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex; gap: 0;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-item {
+    font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); font-weight: 500;
+    padding: 0 40px;
+  }
+  .marquee-sep { color: var(--gold); padding: 0 8px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── SECTION TITLES ─── */
+  .section-eyebrow {
+    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--rust); font-weight: 500; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--deep-brown); line-height: 1.2;
+    font-weight: 700;
+  }
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  /* ─── DESTINATIONS GRID ─── */
+  .destinations { padding: 100px 60px; background: var(--warm-white); }
+  .dest-header { text-align: center; margin-bottom: 70px; }
+  .dest-header .section-title { margin-bottom: 16px; }
+  .dest-header p { color: var(--mid-brown); font-size: 1rem; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+  .dest-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: 400px 300px;
+    gap: 16px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .dest-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.4s;
+  }
+  .dest-card:hover { transform: scale(0.985); }
+  .dest-card:first-child { grid-row: 1 / 3; }
+  .dest-card-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .dest-card:hover .dest-card-img { transform: scale(1.06); }
+  .dest-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,18,8,0.8) 0%, transparent 55%);
+  }
+  .dest-card-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 24px;
+  }
+  .dest-card-tag {
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    background: var(--rust); color: white;
+    padding: 4px 10px; display: inline-block; margin-bottom: 8px;
+  }
+  .dest-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: white; font-weight: 700; line-height: 1.1;
+  }
+  .dest-card:first-child .dest-card-name { font-size: 2.8rem; }
+  .dest-card-desc { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-top: 6px; }
+  .dest-card-arrow {
+    position: absolute; top: 20px; right: 20px;
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.1rem; opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .dest-card:hover .dest-card-arrow { opacity: 1; }
+
+  /* ─── PLACE DETAIL SECTIONS ─── */
+  .place-section {
+    padding: 100px 0;
+    display: none;
+  }
+  .place-section.active { display: block; }
+
+  /* ─── HAMPI ─── */
+  #hampi-section { background: var(--cream); }
+  .hampi-hero-strip {
+    height: 65vh; position: relative; overflow: hidden; margin-bottom: 0;
+  }
+  .hampi-hero-strip img { width: 100%; height: 100%; object-fit: cover; }
+  .hampi-hero-strip::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(196,80,10,0.35) 0%, rgba(26,18,8,0.5) 100%);
+  }
+  .hampi-hero-strip .place-big-title {
+    position: absolute; bottom: 48px; left: 80px; z-index: 2;
+    font-family: 'Abril Fatface', serif; font-size: clamp(4rem, 10vw, 9rem);
+    color: white; line-height: 0.9; letter-spacing: -2px;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.3);
+  }
+
+  .place-content { max-width: 1200px; margin: 0 auto; padding: 70px 60px; }
+  .place-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 70px; }
+  .place-intro-text .section-eyebrow { margin-bottom: 14px; }
+  .place-intro-text .section-title { margin-bottom: 24px; }
+  .place-intro-text p { color: var(--mid-brown); line-height: 1.85; font-size: 0.95rem; margin-bottom: 16px; }
+  .place-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-card {
+    background: var(--warm-white); padding: 24px;
+    border-left: 3px solid var(--rust);
+  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--rust); font-weight: 700; }
+  .stat-label { font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mid-brown); margin-top: 4px; }
+
+  /* ─── CAFES GRID ─── */
+  .cafes-section { margin-bottom: 60px; }
+  .cafes-section h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.8rem;
+    color: var(--deep-brown); margin-bottom: 32px; font-weight: 700;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .cafes-section h3::before { content: '☕'; }
+  .cafes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .cafe-card {
+    background: white; overflow: hidden;
+    border: 1px solid rgba(196,80,10,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .cafe-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(44,26,14,0.12); }
+  .cafe-img { height: 200px; overflow: hidden; }
+  .cafe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .cafe-card:hover .cafe-img img { transform: scale(1.08); }
+  .cafe-body { padding: 22px; }
+  .cafe-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--deep-brown); font-weight: 700; margin-bottom: 6px; }
+  .cafe-vibe {
+    font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--rust); font-weight: 500; margin-bottom: 10px;
+  }
+  .cafe-desc { font-size: 0.85rem; color: var(--mid-brown); line-height: 1.65; margin-bottom: 14px; }
+  .cafe-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.68rem; padding: 3px 10px;
+    background: var(--light-sand); color: var(--mid-brown);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── INSTAGRAM SPOTS ─── */
+  .insta-section { margin-bottom: 60px; }
+  .insta-section h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.8rem;
+    color: var(--deep-brown); margin-bottom: 32px; font-weight: 700;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .insta-section h3::before { content: '📸'; }
+  .insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .insta-card { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; }
+  .insta-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .insta-card:hover img { transform: scale(1.1); }
+  .insta-card-overlay {
+    position: absolute; inset: 0;
+    background: rgba(196,80,10,0.0);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
+  }
+  .insta-card:hover .insta-card-overlay { background: rgba(26,18,8,0.55); }
+  .insta-card-text {
+    color: white; text-align: center; opacity: 0; transition: opacity 0.3s;
+    padding: 16px;
+  }
+  .insta-card:hover .insta-card-text { opacity: 1; }
+  .insta-card-text strong { font-family: 'Playfair Display', serif; font-size: 0.95rem; display: block; margin-bottom: 4px; }
+  .insta-card-text span { font-size: 0.75rem; opacity: 0.85; }
+
+  /* ─── HISTORY TIMELINE ─── */
+  .history-section { margin-bottom: 60px; }
+  .history-section h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.8rem;
+    color: var(--deep-brown); margin-bottom: 32px; font-weight: 700;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .history-section h3::before { content: '🏛️'; }
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--rust), var(--gold));
+  }
+  .timeline-item { position: relative; margin-bottom: 32px; }
+  .timeline-dot {
+    position: absolute; left: -36px; top: 4px;
+    width: 14px; height: 14px; background: var(--rust);
+    border: 2px solid var(--warm-white); border-radius: 50%;
+  }
+  .timeline-year { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 4px; }
+  .timeline-event { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--deep-brown); font-weight: 700; margin-bottom: 6px; }
+  .timeline-desc { font-size: 0.85rem; color: var(--mid-brown); line-height: 1.7; }
+
+  /* ─── GOA SECTION ─── */
+  #goa-section { background: #f0f4ef; }
+  #goa-section .hampi-hero-strip::after {
+    background: linear-gradient(135deg, rgba(107,124,92,0.4) 0%, rgba(26,18,8,0.5) 100%);
+  }
+
+  /* ─── UDAIPUR SECTION ─── */
+  #udaipur-section { background: #f4eff6; }
+  #udaipur-section .hampi-hero-strip::after {
+    background: linear-gradient(135deg, rgba(201,133,106,0.4) 0%, rgba(26,18,8,0.5) 100%);
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    height: 2px; max-width: 80px;
+    background: linear-gradient(to right, var(--rust), var(--gold));
+    margin: 0 auto 24px;
+  }
+
+  /* ─── TOUR BUILDER ─── */
+  #tour-builder {
+    background: var(--deep-brown);
+    padding: 100px 60px;
+  }
+  .tour-header { text-align: center; margin-bottom: 60px; }
+  .tour-header .section-title { color: white; }
+  .tour-header .section-title em { color: var(--gold); }
+  .tour-header p { color: rgba(255,255,255,0.65); margin-top: 16px; font-size: 0.95rem; max-width: 520px; margin: 16px auto 0; line-height: 1.7; }
+
+  .tour-builder-inner { max-width: 900px; margin: 0 auto; }
+  .tour-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .tour-step-header {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 28px 24px 0;
+  }
+  .step-num {
+    width: 44px; height: 44px; background: var(--rust);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; color: white; font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .step-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); text-align: center; }
+
+  .tour-form {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 48px;
+    margin-top: 40px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label {
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); font-weight: 500;
+  }
+  .form-input, .form-select, .form-textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white; padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.3s;
+    appearance: none;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-select { cursor: pointer; }
+  .form-select option { background: var(--deep-brown); color: white; }
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; }
+  .checkbox-label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .checkbox-label input { display: none; }
+  .checkbox-chip {
+    padding: 8px 16px; border: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.78rem; color: rgba(255,255,255,0.65); letter-spacing: 0.5px;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .checkbox-label input:checked + .checkbox-chip {
+    background: var(--rust); border-color: var(--rust); color: white;
+  }
+
+  .tour-submit {
+    grid-column: 1 / -1;
+    background: var(--gold); color: var(--deep-brown);
+    padding: 16px; border: none; cursor: pointer;
+    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 600; font-family: 'DM Sans', sans-serif;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 8px;
+  }
+  .tour-submit:hover { background: var(--terracotta); color: white; transform: translateY(-2px); }
+
+  /* ─── TOUR RESULT ─── */
+  .tour-result {
+    display: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,168,67,0.3);
+    padding: 40px; margin-top: 24px;
+    max-width: 900px; margin: 24px auto 0;
+  }
+  .tour-result.active { display: block; }
+  .tour-result-title {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    color: var(--gold); font-weight: 700; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .tour-day {
+    padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tour-day:last-child { border-bottom: none; }
+  .tour-day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .tour-day-num { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); }
+  .tour-day-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; font-weight: 700; }
+  .tour-day-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tour-activity {
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+    padding: 5px 14px; font-size: 0.8rem; letter-spacing: 0.3px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.5);
+    padding: 60px; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Abril Fatface', serif; font-size: 2.4rem;
+    color: var(--rust); margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 0.82rem; line-height: 1.7; max-width: 400px; margin: 0 auto 24px; }
+  .footer-links { display: flex; justify-content: center; gap: 32px; list-style: none; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.4); font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding-left: 28px; }
+    .destinations { padding: 70px 24px; }
+    .dest-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .dest-card:first-child { grid-row: auto; }
+    .dest-card { height: 260px; }
+    .place-content { padding: 50px 24px; }
+    .place-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cafes-grid { grid-template-columns: 1fr; }
+    .insta-grid { grid-template-columns: repeat(2, 1fr); }
+    .tour-form { grid-template-columns: 1fr; padding: 28px; }
+    .form-group.full { grid-column: 1; }
+    #tour-builder { padding: 70px 24px; }
+    .hampi-hero-strip .place-big-title { left: 28px; }
+    .tour-steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Desi <span>Wanderer</span></div>
+  <ul class="nav-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#hampi-section">Hampi</a></li>
+    <li><a href="#goa-section">Goa</a></li>
+    <li><a href="#udaipur-section">Udaipur</a></li>
+    <li><a href="#tour-builder" class="nav-cta">Plan Tour</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">✦ India, Unfiltered</div>
+    <h1 class="hero-title">Stories from the<br><em>Subcontinent</em></h1>
+    <p class="hero-sub">Hidden cafes, ancient ruins, sunsets worth missing flights for — a love letter to the most chaotic, beautiful country on earth.</p>
+    <div class="hero-btns">
+      <a href="#destinations" class="btn-primary">Explore Places</a>
+      <a href="#tour-builder" class="btn-outline">Build My Tour</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Hampi <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Goa <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Udaipur <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Chai Stops <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Hidden Cafes <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Instagram Spots <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Ancient History <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Monsoon Magic <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Hampi <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Goa <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Udaipur <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Chai Stops <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Hidden Cafes <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Instagram Spots <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Ancient History <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Monsoon Magic <span class="marquee-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- DESTINATIONS GRID -->
+<section class="destinations" id="destinations">
+  <div class="dest-header">
+    <div class="section-eyebrow">✦ Where To Go</div>
+    <h2 class="section-title">Pick Your <em>Adventure</em></h2>
+    <p>From bouldered ruins to beach shacks to royal lake palaces — India has a vibe for every kind of wanderer.</p>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card" onclick="showSection('hampi-section')">
+      <img class="dest-card-img" src="https://images.unsplash.com/photo-1598977403738-2e4a4c0c8bcf?w=900&q=80" alt="Hampi">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-arrow">→</div>
+      <div class="dest-card-info">
+        <div class="dest-card-tag">Karnataka</div>
+        <div class="dest-card-name">Hampi</div>
+        <div class="dest-card-desc">Boulders, boulangeries & the Vijayanagara Empire</div>
+      </div>
+    </div>
+    <div class="dest-card" onclick="showSection('goa-section')">
+      <img class="dest-card-img" src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=700&q=80" alt="Goa">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-arrow">→</div>
+      <div class="dest-card-info">
+        <div class="dest-card-tag">Goa</div>
+        <div class="dest-card-name">Goa</div>
+        <div class="dest-card-desc">Beaches, churches & beach-shack cocktails</div>
+      </div>
+    </div>
+    <div class="dest-card" onclick="showSection('udaipur-section')">
+      <img class="dest-card-img" src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=700&q=80" alt="Udaipur">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-arrow">→</div>
+      <div class="dest-card-info">
+        <div class="dest-card-tag">Rajasthan</div>
+        <div class="dest-card-name">Udaipur</div>
+        <div class="dest-card-desc">The City of Lakes — Rajasthan's most romantic</div>
+      </div>
+    </div>
+    <div class="dest-card" style="cursor:default;">
+      <img class="dest-card-img" src="https://images.unsplash.com/photo-1477587458883-47145ed6736c?w=700&q=80" alt="More Coming">
+      <div class="dest-card-overlay"></div>
+      <div class="dest-card-info">
+        <div class="dest-card-tag">Coming Soon</div>
+        <div class="dest-card-name">More Soon...</div>
+        <div class="dest-card-desc">Varanasi, Spiti, Coorg & beyond</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HAMPI SECTION ─── -->
+<section class="place-section" id="hampi-section">
+  <div class="hampi-hero-strip">
+    <img src="https://images.unsplash.com/photo-1598977403738-2e4a4c0c8bcf?w=1800&q=80" alt="Hampi">
+    <div class="place-big-title">Hampi</div>
+  </div>
+
+  <div class="place-content">
+    <!-- INTRO -->
+    <div class="place-intro-grid">
+      <div class="place-intro-text">
+        <div class="section-eyebrow">✦ UNESCO World Heritage Site</div>
+        <h2 class="section-title">Where Boulders<br>Tell <em>Stories</em></h2>
+        <p>Hampi is not just a place — it's a fever dream. Massive granite boulders stack impossibly against each other while temple gopurams pierce the skyline. The Tungabhadra winds through, and somewhere between a banana pancake at a rooftop cafe and watching the sunset from Matanga Hill, you lose all track of time.</p>
+        <p>Once the capital of the mighty Vijayanagara Empire, today it hosts backpackers, hippies, history nerds and every kind of soul in between. There is nowhere else quite like it.</p>
+      </div>
+      <div class="place-stats">
+        <div class="stat-card"><div class="stat-num">4,100+</div><div class="stat-label">Ancient Monuments</div></div>
+        <div class="stat-card"><div class="stat-num">~550km</div><div class="stat-label">From Bangalore</div></div>
+        <div class="stat-card"><div class="stat-num">1336</div><div class="stat-label">Year Founded</div></div>
+        <div class="stat-card"><div class="stat-num">1986</div><div class="stat-label">UNESCO Listing</div></div>
+      </div>
+    </div>
+
+    <!-- CAFES -->
+    <div class="cafes-section">
+      <h3>Cafes Worth Lingering In</h3>
+      <div class="cafes-grid">
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="Laughing Buddha"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Laughing Buddha</div>
+            <div class="cafe-vibe">Rooftop · Hippie Soul · Views</div>
+            <div class="cafe-desc">The OG Hampi hangout. Perched on a rooftop with boulder views, banana pancakes that are borderline illegal, and a playlist that makes you want to stay forever. Order the lemon honey ginger tea and watch the boulders turn gold at sunset.</div>
+            <div class="cafe-tags">
+              <span class="tag">Rooftop</span><span class="tag">Vegetarian</span>
+              <span class="tag">Boulder Views</span><span class="tag">All Day Breakfast</span>
+            </div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&q=80" alt="Wanderlust Cafe"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Wanderlust Café</div>
+            <div class="cafe-vibe">Chill · Garden · Instagram-worthy</div>
+            <div class="cafe-desc">A bougainvillea-draped little sanctuary tucked in Virupapur Gadde (the hippie island). Garden seating, fairy lights after dark, excellent shakshuka and the best cold coffee on this side of the river. Bring a book. Lose a day.</div>
+            <div class="cafe-tags">
+              <span class="tag">Garden Seating</span><span class="tag">Cold Coffee</span>
+              <span class="tag">Fairy Lights</span><span class="tag">Island Side</span>
+            </div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=600&q=80" alt="Mango Tree"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Mango Tree</div>
+            <div class="cafe-vibe">Riverside · Iconic · Local Faves</div>
+            <div class="cafe-desc">Literally under a giant mango tree by the river. Cushioned seating on platforms, hammocks, and some of Hampi's most iconic views. The masala chai here is the stuff of legend — served in clay cups that just taste better somehow.</div>
+            <div class="cafe-tags">
+              <span class="tag">Riverside</span><span class="tag">Hammocks</span>
+              <span class="tag">Masala Chai</span><span class="tag">Local Favourite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTA SPOTS -->
+    <div class="insta-section">
+      <h3>Instagram-Worthy Spots</h3>
+      <div class="insta-grid">
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1623669867491-2d1bab8cd8e0?w=500&q=80" alt="Virupaksha Temple">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Virupaksha Temple</strong><span>Golden hour on the gopuram steps</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1598977403738-2e4a4c0c8bcf?w=500&q=80" alt="Matanga Hill">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Matanga Hill</strong><span>Sunrise that'll rewire your soul</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=80" alt="Elephant Stables">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Elephant Stables</strong><span>Symmetry that's almost too perfect</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&q=80" alt="Lotus Mahal">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Lotus Mahal</strong><span>Indo-Islamic architecture at its finest</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=500&q=80" alt="Coracle Ride">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Coracle Rides</strong><span>Circular boats on the Tungabhadra</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=500&q=80" alt="Hippie Island">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Hippie Island (Virupapur Gadde)</strong><span>Sunset, rice fields & pure vibes</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1571979295620-c4aece95b440?w=500&q=80" alt="Boulder Sunrise">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Boulder Fields</strong><span>Climb one. Any one. Worth it.</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1568789066311-aa81cd8b754a?w=500&q=80" alt="Stone Chariot">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Stone Chariot</strong><span>Vittala Temple's crown jewel</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="history-section">
+      <h3>A Brief History</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1336 CE</div>
+          <div class="timeline-event">The Vijayanagara Empire is Founded</div>
+          <div class="timeline-desc">Harihara I and Bukka Raya I establish the empire near the sacred Tungabhadra river, guided by the sage Vidyaranya. Hampi (then called Vijayanagara — "City of Victory") becomes the capital.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1400s</div>
+          <div class="timeline-event">Golden Age — One of the World's Richest Cities</div>
+          <div class="timeline-desc">At its peak, Vijayanagara had over 500,000 inhabitants — making it one of the largest cities in the medieval world. Merchants from Persia, Portugal, and China filled the bazaars. The Vittala Temple complex was built during this era.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1565 CE</div>
+          <div class="timeline-event">The Battle of Talikota — Fall of an Empire</div>
+          <div class="timeline-desc">A coalition of Deccan sultanates defeats the empire at the Battle of Talikota. The city is sacked and burned for six months, reducing one of the world's greatest cities to the ruins we see today.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1986</div>
+          <div class="timeline-event">UNESCO World Heritage Status</div>
+          <div class="timeline-desc">The ruins of Hampi are officially recognised as a UNESCO World Heritage Site, beginning an era of international attention and preservation. Today over 4,100 monuments span the 4,100-hectare site.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GOA SECTION ─── -->
+<section class="place-section" id="goa-section">
+  <div class="hampi-hero-strip">
+    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1800&q=80" alt="Goa">
+    <div class="place-big-title">Goa</div>
+  </div>
+
+  <div class="place-content">
+    <div class="place-intro-grid">
+      <div class="place-intro-text">
+        <div class="section-eyebrow">✦ India's Beach Paradise</div>
+        <h2 class="section-title">Sun, Sand &<br><em>Soul Food</em></h2>
+        <p>Goa is many things to many people. For some, it's the thumping clubs of Anjuna. For others, it's a sleepy hammock in Patnem with a Kingfisher and nothing to do. The Portuguese left behind pastel-painted churches and vindaloo. The hippies left behind flea markets and trance music.</p>
+        <p>What Goa really is? A mood. And the mood is good.</p>
+      </div>
+      <div class="place-stats">
+        <div class="stat-card"><div class="stat-num">101km</div><div class="stat-label">Coastline</div></div>
+        <div class="stat-card"><div class="stat-num">40+</div><div class="stat-label">Beaches</div></div>
+        <div class="stat-card"><div class="stat-num">1961</div><div class="stat-label">Liberation from Portuguese</div></div>
+        <div class="stat-card"><div class="stat-num">450yr</div><div class="stat-label">Portuguese Heritage</div></div>
+      </div>
+    </div>
+
+    <!-- CAFES & BARS -->
+    <div class="cafes-section">
+      <h3>Cafes, Bars & Beach Shacks</h3>
+      <div class="cafes-grid">
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Maza Kai"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Maza Kai</div>
+            <div class="cafe-vibe">Beach Shack · Konkani Soul · Anjuna</div>
+            <div class="cafe-desc">One of North Goa's most beloved little spots. Maza Kai means "What Fun?" in Konkani — and it delivers. Local seafood, cold beers, sunset views and none of that touristy jazz. Order the prawn balchão and a cold Kings.</div>
+            <div class="cafe-tags"><span class="tag">Seafood</span><span class="tag">North Goa</span><span class="tag">Beach Views</span><span class="tag">Local Fave</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=600&q=80" alt="Buddha Tree"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Buddha Tree</div>
+            <div class="cafe-vibe">Rooftop Jungle · Vegan Haven · Arambol</div>
+            <div class="cafe-desc">Nestled in the jungles near Arambol, Buddha Tree is a multi-level rooftop space draped in fairy lights and actual trees. An eclectic menu of Asian-fusion, wood-fired pizzas and the best acai bowl north of the equator. Pure magic after dark.</div>
+            <div class="cafe-tags"><span class="tag">Vegan Options</span><span class="tag">Arambol</span><span class="tag">Fairy Lights</span><span class="tag">Late Night</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Babka"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Babka</div>
+            <div class="cafe-vibe">European Bakery · Panjim · Morning Gold</div>
+            <div class="cafe-desc">A gorgeous little European-style bakery in Panjim's Latin Quarter. Sourdough loaves, proper croissants, cardamom rolls that will ruin you for all other croissants. The cortado is made with single-origin beans. Come early — everything sells out by 10am.</div>
+            <div class="cafe-tags"><span class="tag">Bakery</span><span class="tag">Panjim</span><span class="tag">Single Origin</span><span class="tag">Sourdough</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=600&q=80" alt="Infantaria"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Infantaria</div>
+            <div class="cafe-vibe">Calangute Legend · Bakery + Café</div>
+            <div class="cafe-desc">The oldest bakery in North Goa. Generations of Goans grew up on Infantaria's bebinca (the local layered coconut cake) and egg puffs. Still run by the same family. Pull up a chair, order the bebinca and a lime soda. Time stops here.</div>
+            <div class="cafe-tags"><span class="tag">Heritage</span><span class="tag">Bebinca</span><span class="tag">Calangute</span><span class="tag">Must Visit</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fisherman's Wharf"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Fisherman's Wharf</div>
+            <div class="cafe-vibe">Riverside · Seafood · Old Goa</div>
+            <div class="cafe-desc">Set on the banks of the Sal River, Fisherman's Wharf does Goan seafood the right way — crab xec xec, fish recheado, prawn curry rice. Wooden interiors, rustic Goan decor and staff who'll tell you what's freshest today.</div>
+            <div class="cafe-tags"><span class="tag">Riverside</span><span class="tag">Goan Cuisine</span><span class="tag">Crab</span><span class="tag">Local Staple</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?w=600&q=80" alt="Bhati Beach Shack"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Curlies Beach Shack</div>
+            <div class="cafe-vibe">Anjuna Icon · Legendary · Sunset Spot</div>
+            <div class="cafe-desc">Curlies has been a Anjuna institution since the '80s rave era. Today it's a chilled beach shack with DJs after dark, a massive menu and the best view of the Anjuna sunset. The rum feni cocktails are dangerously good.</div>
+            <div class="cafe-tags"><span class="tag">Anjuna Beach</span><span class="tag">Sunset DJs</span><span class="tag">Iconic</span><span class="tag">Feni Cocktails</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTA SPOTS GOA -->
+    <div class="insta-section">
+      <h3>Instagram-Worthy Spots</h3>
+      <div class="insta-grid">
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1562602833-0f4ab2fc46e3?w=500&q=80" alt="Chapora Fort">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Chapora Fort</strong><span>The Dil Chahta Hai fort. Unreal views.</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=80" alt="Palolem Beach">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Palolem Beach</strong><span>South Goa's most picturesque crescent</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=500&q=80" alt="Latin Quarter Panjim">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Fontainhas — Latin Quarter</strong><span>Pastel colonial tiles & azulejos</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=500&q=80" alt="Dudhsagar Falls">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Dudhsagar Falls</strong><span>"Sea of Milk" — monsoon is peak season</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1578894382987-3de0f3f0f4ca?w=500&q=80" alt="Se Cathedral">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Sé Cathedral, Old Goa</strong><span>Asia's largest church. UNESCO heritage.</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=500&q=80" alt="Baga Beach Sunset">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Baga Beach Sunset</strong><span>The classic Goa sunset, done right</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=500&q=80" alt="Anjuna Flea Market">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Anjuna Flea Market</strong><span>Wednesdays — buy something handmade</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=500&q=80" alt="Colva Beach">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Colva Beach</strong><span>Wide, white, wonderfully quiet south Goa</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOA HISTORY -->
+    <div class="history-section">
+      <h3>A Brief History</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">3rd Century BCE</div>
+          <div class="timeline-event">Mauryan Empire — Ancient Roots</div>
+          <div class="timeline-desc">Goa (then called Gove or Govapuri) was part of the Mauryan Empire under Ashoka. It later passed through the hands of the Satavahanas, Chalukyas, Rashtrakutas and the Kadamba dynasty who made it a major port city.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1510 CE</div>
+          <div class="timeline-event">Portuguese Conquest — A New Era</div>
+          <div class="timeline-desc">Alfonso de Albuquerque captures Goa from the Bijapur Sultanate, beginning 451 years of Portuguese rule. The Portuguese build magnificent churches, introduce Catholicism and create a unique Indo-Portuguese culture that persists today in Goa's architecture, cuisine and family names.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1961</div>
+          <div class="timeline-event">Liberation — India Reclaims Goa</div>
+          <div class="timeline-desc">Operation Vijay: The Indian Army marches into Goa, ending Portuguese colonial rule in just 36 hours. Goa becomes part of India, first as a Union Territory and then as India's smallest state in 1987.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1970s–80s</div>
+          <div class="timeline-event">Hippie Trail & the Birth of Goa Trance</div>
+          <div class="timeline-desc">International hippies discover Goa's beaches and cheap living. Anjuna and Calangute become hubs for a counterculture movement. All-night beach parties evolve into the Goa Trance music genre — a unique psychedelic electronic music style that influences global dance music culture.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── UDAIPUR SECTION ─── -->
+<section class="place-section" id="udaipur-section">
+  <div class="hampi-hero-strip">
+    <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1800&q=80" alt="Udaipur">
+    <div class="place-big-title">Udaipur</div>
+  </div>
+
+  <div class="place-content">
+    <div class="place-intro-grid">
+      <div class="place-intro-text">
+        <div class="section-eyebrow">✦ Venice of the East</div>
+        <h2 class="section-title">Lakes, Palaces &<br><em>Royal Dreams</em></h2>
+        <p>Udaipur is Rajasthan's most romantic city — and it knows it. Lake Pichola reflects the City Palace at dusk in colours that no Instagram filter can replicate. Narrow old-city lanes smell of marigolds and incense. Rooftop restaurants compete to offer the best view of the lake.</p>
+        <p>The Mewar royals built this city with poetry in their blueprints. Every corner has a story. Every sunset makes you feel like you're in a dream sequence.</p>
+      </div>
+      <div class="place-stats">
+        <div class="stat-card"><div class="stat-num">1559</div><div class="stat-label">City Founded by Maharana Udai Singh II</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Major Lakes</div></div>
+        <div class="stat-card"><div class="stat-num">~7</div><div class="stat-label">UNESCO Monuments Nearby</div></div>
+        <div class="stat-card"><div class="stat-num">Bond</div><div class="stat-label">James Bond filmed Octopussy here</div></div>
+      </div>
+    </div>
+
+    <!-- UDAIPUR CAFES -->
+    <div class="cafes-section">
+      <h3>Rooftop Cafes & Heritage Dining</h3>
+      <div class="cafes-grid">
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1545579133-99bb5ad189be?w=600&q=80" alt="Ambrai Ghat"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Ambrai Restaurant</div>
+            <div class="cafe-vibe">Lakefront · Romantic · Heritage</div>
+            <div class="cafe-desc">The best view of the City Palace you can get while sitting down. Candlelit tables by the lake, live sarangi music at sunset, and Rajasthani thalis that are as beautiful as they are delicious. The most romantic dinner spot in all of India, arguably.</div>
+            <div class="cafe-tags"><span class="tag">Lake Views</span><span class="tag">Romantic</span><span class="tag">Rajasthani Thali</span><span class="tag">Live Music</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80" alt="Savage Garden"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Savage Garden</div>
+            <div class="cafe-vibe">Rooftop · Eclectic Decor · Sunsets</div>
+            <div class="cafe-desc">A wildly decorated rooftop space in the old city, all hanging plants, mismatched furniture, Rajasthani quilts and string lights. The "savage" refers to the eclectic personality of the place. Cocktails are creative, food is comforting, views are spectacular.</div>
+            <div class="cafe-tags"><span class="tag">Rooftop</span><span class="tag">Craft Cocktails</span><span class="tag">Instagram Gold</span><span class="tag">Bohemian</span></div>
+          </div>
+        </div>
+        <div class="cafe-card">
+          <div class="cafe-img"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Jheel Guest House Cafe"></div>
+          <div class="cafe-body">
+            <div class="cafe-name">Jheel Guest House Café</div>
+            <div class="cafe-vibe">Rooftop · Budget · Backpacker Love</div>
+            <div class="cafe-desc">The hidden gem of Udaipur's cafe scene. A tiny rooftop with some of the best lake views in the city and prices that haven't changed in a decade. Try the masala omelette with paratha and watch the lake boats drift by. Pure, simple bliss.</div>
+            <div class="cafe-tags"><span class="tag">Budget</span><span class="tag">Rooftop</span><span class="tag">Lake Views</span><span class="tag">Old City</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UDAIPUR INSTA -->
+    <div class="insta-section">
+      <h3>Instagram-Worthy Spots</h3>
+      <div class="insta-grid">
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=500&q=80" alt="City Palace">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>City Palace</strong><span>The grandest palace complex in Rajasthan</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=80" alt="Lake Pichola">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Lake Pichola at Sunset</strong><span>Golden hour on the water. No words.</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1567518498090-ae72a78a3b74?w=500&q=80" alt="Jag Mandir">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Jag Mandir Island Palace</strong><span>Take the boat. 100% worth it.</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1583087253076-92b9f7a2d8a5?w=500&q=80" alt="Sajjangarh Monsoon Palace">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Sajjangarh Monsoon Palace</strong><span>Hilltop fort — magical at dusk</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=500&q=80" alt="Bagore Ki Haveli">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Bagore Ki Haveli</strong><span>18th-century haveli on Gangaur Ghat</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=80" alt="Gangaur Ghat">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Gangaur Ghat</strong><span>Colourful boats, women in lehengas</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="Kumbhalgarh Fort">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Kumbhalgarh Fort</strong><span>2nd longest wall in the world. Day trip.</span></div></div>
+        </div>
+        <div class="insta-card">
+          <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=500&q=80" alt="Old City Lanes">
+          <div class="insta-card-overlay"><div class="insta-card-text"><strong>Old City Lanes</strong><span>Get lost. Seriously. It's the point.</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UDAIPUR HISTORY -->
+    <div class="history-section">
+      <h3>A Brief History</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1559 CE</div>
+          <div class="timeline-event">Maharana Udai Singh II Founds Udaipur</div>
+          <div class="timeline-desc">After the fall of Chittorgarh to Akbar, Maharana Udai Singh II establishes a new Mewar capital on the banks of Lake Pichola. A sage, the story goes, told him this site would never be conquered. Construction of the City Palace begins.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1600s</div>
+          <div class="timeline-event">Mewar Resists the Mughals</div>
+          <div class="timeline-desc">The Mewar Rajputs are the only major Rajput clan to never fully submit to Mughal authority. Maharana Pratap's legendary Battle of Haldighati against Akbar's forces in 1576 becomes the stuff of national legend, still celebrated today.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1818</div>
+          <div class="timeline-event">Treaty with the British East India Company</div>
+          <div class="timeline-desc">Mewar signs a treaty with the British, becoming a "princely state" under British suzerainty. The royal family retains symbolic rule but cedes sovereignty. The City Palace continues to grow under successive maharanas.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">1983</div>
+          <div class="timeline-event">James Bond Puts Udaipur on the Global Map</div>
+          <div class="timeline-desc">Octopussy — the 13th James Bond film — is filmed extensively at the Lake Palace Hotel and around Udaipur, bringing international attention to the city. The Lake Palace was literally built on an island in 1746 as a summer palace. Today it's one of the world's most photographed hotels.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOUR BUILDER ─── -->
+<section id="tour-builder">
+  <div class="tour-header">
+    <div class="section-eyebrow" style="color:var(--gold);">✦ Personalised Itinerary</div>
+    <h2 class="section-title">Build Your<br><em>Dream Tour</em></h2>
+    <p>Tell us your vibe, your time, your pace — and we'll sketch your perfect India adventure.</p>
+  </div>
+
+  <div class="tour-builder-inner">
+    <div class="tour-steps">
+      <div class="tour-step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Choose Your Destinations</div>
+      </div>
+      <div class="tour-step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Set Your Preferences</div>
+      </div>
+      <div class="tour-step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Get Your Itinerary</div>
+      </div>
+    </div>
+
+    <div class="tour-form">
+      <div class="form-group full">
+        <div class="form-label">📍 Destinations (select all that apply)</div>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" value="Hampi" id="dest-hampi"><span class="checkbox-chip">Hampi</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="Goa" id="dest-goa"><span class="checkbox-chip">Goa</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="Udaipur" id="dest-udaipur"><span class="checkbox-chip">Udaipur</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="Varanasi" id="dest-varanasi"><span class="checkbox-chip">Varanasi ✦ Coming Soon</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="Spiti" id="dest-spiti"><span class="checkbox-chip">Spiti ✦ Coming Soon</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🗓️ Number of Days</label>
+        <input type="number" class="form-input" id="num-days" min="3" max="30" placeholder="e.g. 7" value="7">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">👥 Travel Style</label>
+        <select class="form-select" id="travel-style">
+          <option value="">Select style...</option>
+          <option value="solo">Solo Wanderer</option>
+          <option value="couple">Couple / Honeymoon</option>
+          <option value="friends">Squad / Friends Trip</option>
+          <option value="family">Family with Kids</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">💰 Budget Vibe</label>
+        <select class="form-select" id="budget">
+          <option value="">Select budget...</option>
+          <option value="backpacker">Backpacker (₹500–1500/day)</option>
+          <option value="mid">Mid-range (₹2000–5000/day)</option>
+          <option value="luxury">Luxury (₹8000+/day)</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <div class="form-label">🎯 What You Love (select all that apply)</div>
+        <div class="checkbox-group">
+          <label class="checkbox-label"><input type="checkbox" value="cafes" id="int-cafes"><span class="checkbox-chip">☕ Cafes & Food</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="history" id="int-history"><span class="checkbox-chip">🏛️ History & Culture</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="instagram" id="int-insta"><span class="checkbox-chip">📸 Instagram Spots</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="adventure" id="int-adventure"><span class="checkbox-chip">🧗 Adventure & Trek</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="beaches" id="int-beaches"><span class="checkbox-chip">🏖️ Beaches & Water</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="nightlife" id="int-nightlife"><span class="checkbox-chip">🌙 Nightlife & Music</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="spiritual" id="int-spiritual"><span class="checkbox-chip">🙏 Spiritual & Wellness</span></label>
+          <label class="checkbox-label"><input type="checkbox" value="shopping" id="int-shopping"><span class="checkbox-chip">🛍️ Shopping & Crafts</span></label>
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <label class="form-label">💬 Anything else? (pace, mobility needs, must-dos)</label>
+        <textarea class="form-textarea" id="special-notes" placeholder="e.g. I want a slow morning every day, I hate crowds, we want at least one sunrise..."></textarea>
+      </div>
+
+      <button class="tour-submit" onclick="generateTour()">✦ Generate My Itinerary</button>
+    </div>
+
+    <div class="tour-result" id="tour-result">
+      <div class="tour-result-title">✦ Your Personalised Itinerary</div>
+      <div id="tour-days-container"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Desi <span>Wanderer</span></div>
+  <p>A labour of love for the boulders, beaches and blue lakes of the most magnificent country on earth. More destinations coming soon.</p>
+  <ul class="footer-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#hampi-section">Hampi</a></li>
+    <li><a href="#goa-section">Goa</a></li>
+    <li><a href="#udaipur-section">Udaipur</a></li>
+    <li><a href="#tour-builder">Plan Tour</a></li>
+  </ul>
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.place-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
+// Show all sections by default (scroll-based discovery)
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.place-section').forEach(s => s.classList.add('active'));
+});
+
+const tourData = {
+  Hampi: {
+    cafes: ['Breakfast at Laughing Buddha (rooftop view)', 'Coffee & chill at Wanderlust Cafe (Hippie Island)', 'Riverside lunch at Mango Tree'],
+    history: ['Virupaksha Temple & Hampi Bazaar', 'Vittala Temple & Stone Chariot', 'Elephant Stables & Lotus Mahal', 'Royal Enclosure & Queens Bath'],
+    instagram: ['Sunrise on Matanga Hill', 'Boulder climbing at sunset', 'Coracle ride on Tungabhadra', 'Hippie Island (Virupapur Gadde) at dusk'],
+    adventure: ['Boulder climbing with a guide', 'Coracle rafting on Tungabhadra', 'Sunrise trek to Matanga Hill'],
+    spiritual: ['Virupaksha Temple morning puja', 'Hemakuta Hill temples at sunrise'],
+  },
+  Goa: {
+    cafes: ['Morning cortado at Babka (Panjim)', 'Lunch at Maza Kai (local seafood)', 'Sunset cocktails at Curlies (Anjuna)', 'Dinner at Fisherman\'s Wharf (Sal River)', 'Late night at Buddha Tree (Arambol)', 'Bebinca & chai at Infantaria'],
+    history: ['Basilica of Bom Jesus & Se Cathedral, Old Goa', 'Fontainhas Latin Quarter walk, Panjim', 'Chapora Fort history & views'],
+    instagram: ['Chapora Fort for views', 'Fontainhas pastel lanes', 'Palolem Beach crescent', 'Dudhsagar Falls (seasonal)', 'Anjuna Flea Market (Wednesday)'],
+    beaches: ['Palolem Beach (south, quiet)', 'Anjuna Beach (north, lively)', 'Arambol Beach (hippy, calm)', 'Colva Beach (wide, white)', 'Butterfly Beach (hike in)'],
+    nightlife: ['Curlies sunset DJ set (Anjuna)', 'Thalassa Greek beach bar (Vagator)', 'Club LPK Waterfront', 'Leopard Valley weekend parties'],
+  },
+  Udaipur: {
+    cafes: ['Sunrise chai on any rooftop cafe', 'Jheel Guest House rooftop breakfast', 'Sundowner cocktails at Savage Garden', 'Romantic dinner at Ambrai (lakeside)'],
+    history: ['City Palace Museum', 'Jagdish Temple (step inside at dawn)', 'Bagore ki Haveli & evening folk show', 'Kumbhalgarh Fort day trip'],
+    instagram: ['City Palace at sunrise', 'Lake Pichola boat ride at sunset', 'Jag Mandir Island Palace', 'Old city lanes & blue/yellow walls', 'Sajjangarh Monsoon Palace at dusk'],
+    adventure: ['Kumbhalgarh Fort hike', 'Horse safari in Aravalli hills'],
+    shopping: ['Hathipol market for textiles & puppets', 'Bada Bazaar for silver jewellery', 'Shilpgram craft village'],
+    spiritual: ['Eklingji Temple day trip', 'Nathdwara & Srinathji Temple', 'Morning aarti at Jagdish Temple'],
+  }
+};
+
+function generateTour() {
+  const destinations = [...document.querySelectorAll('.checkbox-group input[type=checkbox]:checked')]
+    .map(c => c.value).filter(v => ['Hampi','Goa','Udaipur'].includes(v));
+  const days = parseInt(document.getElementById('num-days').value) || 7;
+  const interests = [...document.querySelectorAll('#tour-builder .checkbox-group input[type=checkbox]:checked')]
+    .map(c => c.value).filter(v => ['cafes','history','instagram','adventure','beaches','nightlife','spiritual','shopping'].includes(v));
+  const style = document.getElementById('travel-style').value;
+  const budget = document.getElementById('budget').value;
+
+  if (destinations.length === 0) {
+    alert('Please select at least one destination!');
+    return;
+  }
+
+  const daysPerDest = Math.floor(days / destinations.length);
+  const remainder = days % destinations.length;
+
+  let allDays = [];
+  destinations.forEach((dest, di) => {
+    const dCount = daysPerDest + (di === 0 ? remainder : 0);
+    const data = tourData[dest] || {};
+    
+    for (let d = 0; d < dCount; d++) {
+      const activities = [];
+      
+      // Always add a place-specific must-do
+      if (d === 0) activities.push(`Arrive in ${dest} — settle in, first wander`);
+      if (d === dCount - 1) activities.push(`Wrap up in ${dest} — final cafe, gentle pack`);
+
+      // Add based on interests
+      if (interests.includes('cafes') && data.cafes) {
+        activities.push(data.cafes[d % data.cafes.length]);
+      }
+      if (interests.includes('history') && data.history) {
+        activities.push(data.history[d % data.history.length]);
+      }
+      if (interests.includes('instagram') && data.instagram) {
+        activities.push(data.instagram[d % data.instagram.length]);
+      }
+      if (interests.includes('adventure') && data.adventure) {
+        activities.push(data.adventure[d % (data.adventure.length)]);
+      }
+      if (interests.includes('beaches') && data.beaches) {
+        activities.push(data.beaches[d % data.beaches.length]);
+      }
+      if (interests.includes('nightlife') && data.nightlife) {
+        activities.push(data.nightlife[d % data.nightlife.length]);
+      }
+      if (interests.includes('spiritual') && data.spiritual) {
+        activities.push(data.spiritual[d % data.spiritual.length]);
+      }
+      if (interests.includes('shopping') && data.shopping) {
+        activities.push(data.shopping[d % (data.shopping.length)]);
+      }
+
+      // Fallback if no interests selected
+      if (activities.length < 3 && data.history) activities.push(data.history[d % data.history.length]);
+      if (activities.length < 3 && data.cafes) activities.push(data.cafes[d % data.cafes.length]);
+
+      allDays.push({
+        dest,
+        dayLabel: `Day ${allDays.length + 1}`,
+        title: `${dest} — ${d === 0 ? 'Arrival & First Explore' : d === dCount-1 ? 'Final Hours' : 'Full Day'}`,
+        activities: [...new Set(activities)]
+      });
+    }
+  });
+
+  const container = document.getElementById('tour-days-container');
+  container.innerHTML = allDays.map(day => `
+    <div class="tour-day">
+      <div class="tour-day-header">
+        <span class="tour-day-num">${day.dayLabel}</span>
+        <span class="tour-day-title">${day.title}</span>
+      </div>
+      <div class="tour-day-items">
+        ${day.activities.map(a => `<span class="tour-activity">${a}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  // Add header note
+  const budgetLabel = {backpacker:'Backpacker Budget', mid:'Mid-Range', luxury:'Luxury'}[budget] || '';
+  const styleLabel = {solo:'Solo', couple:'Couple', friends:'Friends Group', family:'Family'}[style] || '';
+  const note = document.createElement('div');
+  note.style.cssText = 'color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);';
+  note.textContent = `${days}-day trip · ${styleLabel} · ${budgetLabel} · ${destinations.join(' → ')}`;
+  container.appendChild(note);
+
+  const result = document.getElementById('tour-result');
+  result.classList.add('active');
+  setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+</script>
+</body>
+</html>
